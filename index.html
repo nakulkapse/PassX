@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block status %} Add {% endblock status %}
+{% block body %}
+
+
+<div class="container my-4">
+    <table class="table">
+        {% if allTodo|length==0 %}
+        <div class="alert alert-dark text-light bg-dark" role="alert">
+            No records found
+        </div>
+        {% else %}
+        <thead>
+            <tr>
+                <th class="fw-bold" scope="col">Sno.</th>
+                <th class="fw-bold" scope="col">Website</th>
+                <th class="fw-bold" scope="col">Account</th>
+                <th class="fw-bold" scope="col">Password</th>
+                <th class="fw-bold" scope="col">Date</th>
+                <th class="fw-bold" scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for todo in allTodo %}
+            <tr>
+                <td style="line-height: 40px;">{{loop.index}}</td>
+                <td style="line-height: 40px;">{{todo.website}}</td>
+                <td style="line-height: 40px;">{{todo.account}}</td>
+                <td style="line-height: 40px;">{{todo.strong_password}}</td>
+                <td style="line-height: 40px;">{{todo.date}}</td>
+                <td><a href="/update/{{todo.sno}}" type="button" class="btn btn-dark">Update</a><a
+                        href="/delete/{{todo.sno}}" type="button" class="mx-2 btn btn-dark btn-delete">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% endif %}
+    </table>
+</div>
+
+{% endblock body %}
